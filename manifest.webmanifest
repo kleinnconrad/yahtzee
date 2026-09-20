@@ -1,0 +1,1 @@
+{"name":"Kids Yahtzee","short_name":"Yahtzee","description":"A fun multiplayer Yahtzee game for kids","start_url":"/yahtzee/","display":"fullscreen","background_color":"#f7fff7","theme_color":"#ff579a","lang":"en","scope":"/yahtzee/","orientation":"portrait","icons":[{"src":"favicon.svg","sizes":"192x192 512x512","type":"image/svg+xml","purpose":"any"}]}
