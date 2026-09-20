@@ -1,19 +1,22 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import { createContext, useContext, useReducer } from 'react';
+import type { ReactNode } from 'react';
 import type { DiceArray } from '../logic/ScoreEngine';
 
-export enum Theme {
-  NUMBERS = 'NUMBERS',
-  ANIMALS = 'ANIMALS',
-}
+export const Theme = {
+  NUMBERS: 'NUMBERS',
+  ANIMALS: 'ANIMALS',
+} as const;
+export type Theme = typeof Theme[keyof typeof Theme];
 
-export enum GamePhase {
-  SETUP = 'SETUP',
-  START = 'START',
-  ROLLING = 'ROLLING',
-  SELECT_DICE = 'SELECT_DICE',
-  SELECT_SCORE = 'SELECT_SCORE',
-  GAME_OVER = 'GAME_OVER',
-}
+export const GamePhase = {
+  SETUP: 'SETUP',
+  START: 'START',
+  ROLLING: 'ROLLING',
+  SELECT_DICE: 'SELECT_DICE',
+  SELECT_SCORE: 'SELECT_SCORE',
+  GAME_OVER: 'GAME_OVER',
+} as const;
+export type GamePhase = typeof GamePhase[keyof typeof GamePhase];
 
 export interface ScoreSheet {
   ones: number | null;
@@ -122,7 +125,7 @@ export const gameReducer = (state: GameState, action: GameAction): GameState => 
       updatedPlayers[state.currentPlayerIndex] = { ...currentPlayer, scoreSheet: updatedScoreSheet };
 
       let nextPlayerIndex = state.currentPlayerIndex + 1;
-      let nextPhase = GamePhase.START;
+      let nextPhase: GamePhase = GamePhase.START;
       
       // Check if game is over (all players filled all 13 categories)
       // We can just check if the last player just filled their last category.

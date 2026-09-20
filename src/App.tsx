@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { GameProvider, useGame, GamePhase } from './store/GameStore';
 import { ThemeToggle } from './components/ThemeToggle';
 import { DieView } from './components/DieView';
@@ -23,8 +23,8 @@ const DiceArea = () => {
         try {
           const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3');
           audio.volume = 0.5;
-          audio.play().catch(e => console.log('Audio autoplay prevented'));
-        } catch (e) {}
+          audio.play().catch(() => console.log('Audio autoplay prevented'));
+        } catch (error) { console.error(error); }
       }
     }
   }, [state.diceValues]);
