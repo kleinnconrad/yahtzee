@@ -124,6 +124,20 @@ export const ScoreSheetView: React.FC = () => {
             );
           })}
         </div>
+
+        {state.theme === Theme.ANIMALS && (
+          <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', textAlign: 'center', width: '100%', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Straight Sequence / Reihenfolge</div>
+            <div style={{ fontSize: '1.6rem', display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
+              🐭 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
+              🐱 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
+              🐶 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
+              🐷 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
+              🐵 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
+              🦁
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
