@@ -47,7 +47,7 @@ export const ScoreSheetView: React.FC = () => {
     const currentPlayer = state.players[state.currentPlayerIndex];
     if (currentPlayer.scoreSheet[category] !== null) return; // already scored
     
-    const possibleScore = ScoreEngine[category](state.diceValues);
+    const possibleScore = (ScoreEngine as any)[category](state.diceValues, state.theme === Theme.ANIMALS);
     
     if (possibleScore === 0) {
       if (!window.confirm(`Are you sure? This gives 0 points! 😢`)) {
@@ -84,7 +84,7 @@ export const ScoreSheetView: React.FC = () => {
                 
                 let previewScore = null;
                 if (isActive && !isScored && state.rollsLeft < 3) {
-                  previewScore = ScoreEngine[cat](state.diceValues);
+                  previewScore = (ScoreEngine as any)[cat](state.diceValues, state.theme === Theme.ANIMALS);
                 }
 
                 return (
@@ -127,14 +127,10 @@ export const ScoreSheetView: React.FC = () => {
 
         {state.theme === Theme.ANIMALS && (
           <div style={{ marginTop: '16px', padding: '12px', background: 'rgba(255,255,255,0.05)', borderRadius: '8px', textAlign: 'center', width: '100%', border: '1px solid rgba(255,255,255,0.1)' }}>
-            <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Straight Sequence / Reihenfolge</div>
-            <div style={{ fontSize: '1.6rem', display: 'flex', justifyContent: 'center', gap: '8px', alignItems: 'center' }}>
-              🐭 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
-              🐱 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
-              🐶 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
-              🐷 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
-              🐵 <span style={{fontSize: '1rem', opacity: 0.5}}>➔</span> 
-              🦁
+            <div style={{ fontSize: '0.9rem', opacity: 0.8, marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '1px' }}>Animal Straights</div>
+            <div style={{ fontSize: '1.1rem', opacity: 0.9 }}>
+              Small Straight (30): Any 4 different animals<br />
+              Large Straight (40): Any 5 different animals
             </div>
           </div>
         )}

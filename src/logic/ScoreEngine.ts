@@ -44,8 +44,11 @@ export const ScoreEngine = {
     return 0;
   },
 
-  smallStraight: (dice: DiceArray): number => {
+  smallStraight: (dice: DiceArray, isAnimalMode?: boolean): number => {
     const uniqueVals = Array.from(new Set(dice)).sort();
+    if (isAnimalMode) {
+      return uniqueVals.length >= 4 ? 30 : 0;
+    }
     const str = uniqueVals.join('');
     if (str.includes('1234') || str.includes('2345') || str.includes('3456')) {
       return 30;
@@ -53,8 +56,11 @@ export const ScoreEngine = {
     return 0;
   },
 
-  largeStraight: (dice: DiceArray): number => {
+  largeStraight: (dice: DiceArray, isAnimalMode?: boolean): number => {
     const uniqueVals = Array.from(new Set(dice)).sort();
+    if (isAnimalMode) {
+      return uniqueVals.length >= 5 ? 40 : 0;
+    }
     const str = uniqueVals.join('');
     if (str.includes('12345') || str.includes('23456')) {
       return 40;
